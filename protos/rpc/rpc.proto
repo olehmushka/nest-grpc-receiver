@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "rpc/contact.proto";
+import "rpc/user.proto";
+
+package rpc;
+
+service Rpc {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc CreateContact (CreateContactRequest) returns (CreateContactResponse);
+  rpc GetContactsList (GetContactsListRequest) returns (GetContactsListResponse);
+}
+
+message CreateUserRequest {
+  string firstName   = 1;
+  string lastName    = 2;
+  string birthday    = 3;
+  string phoneNumber = 4;
+  string email       = 5;
+}
+
+message CreateUserResponse {
+  user.User data      = 1;
+  int32     timestamp = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  user.User data      = 1;
+  int32     timestamp = 2;
+}
+
+message CreateContactRequest {
+  string name        = 1;
+  string phoneNumber = 2;
+  string userId      = 3;
+}
+
+message CreateContactResponse {
+  contact.Contact data      = 1;
+  int32           timestamp = 2;
+}
+
+message GetContactsListRequest {
+  int32 skip  = 1;
+  int32 limit = 2;
+}
+
+message GetContactsListResponse {
+  repeated contact.Contact data      = 1;
+  int32                    timestamp = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package contact;
+
+message Contact {
+  string id          = 1;
+  string name        = 2;
+  string phoneNumber = 3;
+  string userId      = 4;
+}
